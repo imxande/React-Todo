@@ -49,12 +49,12 @@ class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      todo: todo
+      todos: todo
     }
   }
 
   render() {
-    console.log(todo); // checking if I have my state
+    console.log(this.state.todos); // checking if I have my state
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
