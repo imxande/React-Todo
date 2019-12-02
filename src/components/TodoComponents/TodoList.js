@@ -11,7 +11,6 @@ class TodoList extends React.Component{
     }
 
     render(){
-        console.log(Todo);
         return (
             <div>
                 <h3>My TodoList goes here </h3>
