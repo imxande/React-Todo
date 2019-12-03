@@ -1,8 +1,9 @@
 import React from 'react';
 import TodoList from './components/TodoComponents/TodoList';
+import TodoForm from './components/TodoComponents/TodoForm';
 
 
-const todo = [
+const todos = [
   {
       task: 'Workout',
       id:1,
@@ -41,7 +42,6 @@ const todo = [
   
 ]
 
-
 class App extends React.Component {
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
@@ -49,16 +49,30 @@ class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      todos: todo
+      todos: todos
     }
   }
+
+  // addiing new todo
+addTodo = newTodoText => {
+  const newTodo = {
+    task: newTodoText,
+    id: Date.now(),
+    completed: false
+  } 
+
+  this.setState({
+    todos: [...this.state.todos, newTodo]
+  })
+}
 
   render() {
     console.log(this.state.todos); // checking if I have my state
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoList  todo = {this.state.todos} />
+        <TodoList  todos = {this.state.todos} />
+        <TodoForm addTodo={this.addTodo} />
       </div>
     );
   }
