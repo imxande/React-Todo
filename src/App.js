@@ -53,7 +53,34 @@ class App extends React.Component {
     }
   }
 
-  // addiing new todo
+// toggle
+toggleCompleted = todoId => {
+    console.log("toggleCompleted: ", todoId);
+
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        if (todo.id === todoId) {
+          return {
+            ...todo,
+            completed: !todo.completed
+          };
+        }
+        return todo;
+      })
+    });
+  };
+
+  clearCompleted = () => {
+    console.log("clearCompleted");
+    this.setState({
+      todos: this.state.todos.filter(item => {
+        return !item.completed;
+      })
+    });
+  };
+
+
+  // adding new todo
 addTodo = newTodoText => {
   const newTodo = {
     task: newTodoText,
@@ -71,7 +98,11 @@ addTodo = newTodoText => {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoList  todos = {this.state.todos} />
+        <TodoList  
+            todos = {this.state.todos}
+            toggleCompleted={this.toggleCompleted}
+            clearCompleted={this.clearCompleted} 
+        />
         <TodoForm addTodo={this.addTodo} />
       </div>
     );
